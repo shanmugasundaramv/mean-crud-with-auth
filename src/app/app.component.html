@@ -1,0 +1,19 @@
+<app-header></app-header>
+<div class="container-sm">
+  <br />
+  <!-- <h2>{{title}}</h2>
+  <hr> -->
+  <ng-container *ngIf="loading$ | async">
+    <div class="overlay"></div>
+    <div class="spinner-container">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </ng-container>
+  <div class="card">
+    <div class="card-body">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

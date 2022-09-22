@@ -1,0 +1,51 @@
+<h3>Book Form</h3>
+<div class="alert alert-danger" *ngIf="errorMessage">
+  {{errorMessage}}
+</div>
+<div class="row">
+  <div class="col-8">
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate #myForm="ngForm">
+  <div class="row">
+    <div class="col-12 login-section">
+      <div class="mb-3">
+        <label class="mb-1">Book Name</label>
+        <input type="text" class="form-control" placeholder="Book Name" formControlName="bookName" [ngClass]="{'is-invalid': bookFormFn.bookName.invalid && bookFormFn.bookName.touched}" />
+        <div *ngIf="bookFormFn.bookName.touched && bookFormFn.bookName.invalid" class="help-block text-danger d-block">
+          <div *ngIf="bookFormFn.bookName.errors.required">Book name is required.</div>
+          <div *ngIf="bookFormFn.bookName.errors.pattern">Please enter a Valid Book name</div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="mb-1">Publisher Name</label>
+        <input type="text" class="form-control" placeholder="Publisher Name" formControlName="publisher" [ngClass]="{'is-invalid': bookFormFn.publisher.invalid && bookFormFn.publisher.touched}" />
+        <div *ngIf="bookFormFn.publisher.touched && bookFormFn.publisher.invalid" class="help-block text-danger d-block">
+          <div *ngIf="bookFormFn.publisher.errors.required">Publisher Name is required.</div>
+          <div *ngIf="bookFormFn.publisher.errors.pattern">Please enter a Valid Publisher Name</div>
+        </div>
+      </div>     
+      <div class="mb-3">
+        <label class="mb-1">Price</label>
+        <input type="number" class="form-control" maxlength="10" placeholder="Price" formControlName="price" [ngClass]="{'is-invalid': bookFormFn.price.invalid && bookFormFn.price.touched}" />
+        <div *ngIf="bookFormFn.price.touched && bookFormFn.price.invalid" class="help-block text-danger d-block">
+          <div *ngIf="bookFormFn.price.errors.required">Price is required.</div>
+          <div *ngIf="bookFormFn.price.errors.pattern">Please enter a valida price.</div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="mb-1">Description</label>
+        <textarea
+          class="form-control"
+          id="description"
+          formControlName="description"
+          ></textarea>
+          <div *ngIf="bookFormFn.description.touched && bookFormFn.description.invalid" class="help-block text-danger d-block">
+            <div *ngIf="bookFormFn.description.errors.required">Description is required</div>
+          </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-space" [disabled]="!myForm.form.valid">Submit</button>
+      <button type="button" class="btn btn-secondary" (click)="gotoBookList()">Cancel</button>
+    </div>
+  </div>
+  </form>
+</div>
+</div>

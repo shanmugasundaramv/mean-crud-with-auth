@@ -1,0 +1,29 @@
+<div class="alert alert-danger" role="alert" *ngIf="invalidUser">
+  You don't have permission to view other profile's page
+</div>
+<div class="alert alert-info" role="alert" *ngIf="!invalidUser && books && books.length == 0">
+  No Books found
+</div>
+<table class="table" *ngIf="!invalidUser && books && books.length > 0">
+    <thead>
+      <tr>
+        <th scope="col">Book Name</th>
+        <th scope="col">Publisher</th>
+        <th scope="col">Price</th>
+        <th scope="col" *ngIf="!paramId || paramId.length == 0">Author</th>
+        <th scope="col" *ngIf="paramId && paramId.length != 0">Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books">
+        <td>{{book.bookName}}</td>
+        <td>{{book.publisher}}</td>
+        <td>{{book.price}}</td>
+        <td *ngIf="!paramId || paramId.length == 0">{{book.creator.userName}}</td>
+        <td *ngIf="paramId && paramId.length != 0">
+          <button class="btn btn-primary btn-sm btn-space" (click)="editBook(book.id)">Edit</button>
+          <button class="btn btn-secondary btn-sm" (click)="removeBook(book.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>

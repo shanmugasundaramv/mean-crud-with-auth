@@ -1,0 +1,85 @@
+<h3>User Registration</h3>
+<div class="alert alert-danger" *ngIf="errorMessage">
+  {{errorMessage}}
+</div>
+<div class="row">
+  <div class="col-8">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate #myForm="ngForm">
+  <div class="row">
+    <div class="col-12 login-section">
+      <div class="mb-3">
+        <label class="mb-1">User Name</label>
+        <input type="text" class="form-control" placeholder="User Name" formControlName="userName" [ngClass]="{'is-invalid': registerFormFn.userName.invalid && registerFormFn.userName.touched}" />
+        <div *ngIf="registerFormFn.userName.touched && registerFormFn.userName.invalid" class="help-block text-danger d-block">
+          <div *ngIf="registerFormFn.userName.errors.required">Username is required.</div>
+          <div *ngIf="registerFormFn.userName.errors.pattern">Please enter a Valid Username</div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="mb-1">First Name</label>
+        <input type="text" class="form-control" placeholder="First Name" formControlName="firstName" [ngClass]="{'is-invalid': registerFormFn.firstName.invalid && registerFormFn.firstName.touched}" />
+        <div *ngIf="registerFormFn.firstName.touched && registerFormFn.firstName.invalid" class="help-block text-danger d-block">
+          <div *ngIf="registerFormFn.firstName.errors.required">First Name is required.</div>
+          <div *ngIf="registerFormFn.firstName.errors.pattern">Please enter a Valid First Name</div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="mb-1">Last Name</label>
+        <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName" [ngClass]="{'is-invalid': registerFormFn.lastName.invalid && registerFormFn.lastName.touched}" />
+        <div *ngIf="registerFormFn.lastName.touched && registerFormFn.lastName.invalid" class="help-block text-danger d-block">
+          <div *ngIf="registerFormFn.lastName.errors.required">Last Name is required.</div>
+          <div *ngIf="registerFormFn.lastName.errors.pattern">Please enter a Valid Last Name</div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="mb-1">Email</label>
+        <input type="text" class="form-control" placeholder="Email" formControlName="emailId" [ngClass]="{'is-invalid': registerFormFn.emailId.invalid && registerFormFn.emailId.touched}" />
+        <div *ngIf="registerFormFn.emailId.touched && registerFormFn.emailId.invalid" class="help-block text-danger d-block">
+          <div *ngIf="registerFormFn.emailId.errors.required">Email is required.</div>
+          <div *ngIf="registerFormFn.emailId.errors.pattern">Please enter a Valid emailId</div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="mb-1">Password</label>
+        <input type="password" class="form-control" placeholder="Password" formControlName="password" [ngClass]="{'is-invalid': registerFormFn.password.invalid && registerFormFn.password.touched}" />
+        <div *ngIf="registerFormFn.password.touched && registerFormFn.password.invalid" class="help-block text-danger d-block">
+          <div *ngIf="registerFormFn.password.errors.required">Password is required.</div>
+          <div *ngIf="registerFormFn.password.errors.pattern">Please enter a Valid password</div>
+        </div>
+      </div>      
+      <div class="mb-3">
+        <label class="mb-1">Mobile Number</label>
+        <input type="tel" class="form-control" maxlength="10" placeholder="Mobile Number" formControlName="contactNumber" [ngClass]="{'is-invalid': registerFormFn.contactNumber.invalid && registerFormFn.contactNumber.touched}" />
+        <div *ngIf="registerFormFn.contactNumber.touched && registerFormFn.contactNumber.invalid" class="help-block text-danger d-block">
+          <div *ngIf="registerFormFn.contactNumber.errors.required">Mobile Number is required.</div>
+          <div *ngIf="registerFormFn.contactNumber.errors.pattern">Please, Enter 10 digit Mobile Number.</div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="address" class="mb-1">Address</label>
+        <textarea
+          class="form-control"
+          id="address"
+          formControlName="address"
+          ></textarea>
+          <div *ngIf="registerFormFn.address.touched && registerFormFn.address.invalid" class="help-block text-danger d-block">
+            <div *ngIf="registerFormFn.address.errors.required">Address is required</div>
+          </div>
+      </div>
+      <div class="mb-3">
+        <label for="role" class="mb-1">Role</label>
+        <select name="role" id="role" formControlName="role" class="form-control drop-down">
+          <option value="0">User</option>
+          <option value="1">Admin</option>
+        </select>
+        <div *ngIf="registerFormFn.role.touched && registerFormFn.role.invalid" class="help-block text-danger d-block">
+          <div *ngIf="registerFormFn.role.errors.required">Role is required</div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-space" [disabled]="!myForm.form.valid">Submit</button>
+      <button type="button" class="btn btn-secondary" (click)="gotoLogin()">Cancel</button>
+    </div>
+  </div>
+  </form>
+</div>
+</div>

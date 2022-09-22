@@ -1,0 +1,32 @@
+<!-- <div  *ngIf="(users$ | async)?.length == 0">No Records found.</div> -->
+<div class="alert alert-danger" *ngIf="errorMessage; else elseStatement">
+  {{ errorMessage }}
+</div>
+<ng-template #elseStatement>
+  <div class="form-group">
+    <!-- <input ngModel name="quickSearch" #firstName="ngModel"> -->
+    <input
+      type="text"
+      placeholder="search"
+      class="form-control search-control"
+      [(ngModel)]="filtersearch"
+    />
+  </div>
+  <div *ngIf="users?.length == 0">No Records found.</div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">User Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Contact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users | searchFilter: filtersearch">
+        <td>{{ user.userName }}</td>
+        <td>{{ user.emailId }}</td>
+        <td>{{ user.contactNumber }}</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
